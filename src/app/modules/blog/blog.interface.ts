@@ -5,3 +5,8 @@ export type TBlog = {
     content: string;
     author: Types.ObjectId
 }
+
+export type TUpdateBlog = {
+    title: string;
+    content: string;
+}

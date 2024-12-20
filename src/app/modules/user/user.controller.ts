@@ -6,7 +6,7 @@ const createUser = catchAsync(async (req, res) => {
     const result = await userServices.createUserIntoDB(userData)
     res.status(201).json({
         success: true,
-        message: "Faculties is Retrieve Successfully",
+        message: "Created Your Account Successfully",
         date: result
     })
 })
