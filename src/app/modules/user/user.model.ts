@@ -16,6 +16,8 @@ const userSchema = new Schema<TUser>({
         timestamps: true
     })
 
+
+
 userSchema.post('save', function (doc, next) {
     doc.password = '';
     next();

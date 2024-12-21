@@ -13,9 +13,15 @@ const loginUser = async (payload: TLoginUser) => {
     }
 
     // check is the user blocked?
-    const isUserBlocked = payload?.isBlocked
+    const isUserBlocked = isUserExist?.isBlocked
     if (isUserBlocked === true) {
         throw new Error('This User is blocked!')
+    }
+
+    // if the password is correct
+    const isPasswordCorrect = isUserExist?.password
+    if (payload.password !== isPasswordCorrect) {
+        throw new Error('Password is incorrect')
     }
 
     const result = await User.findOne({
