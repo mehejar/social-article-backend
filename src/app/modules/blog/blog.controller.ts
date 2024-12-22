@@ -12,6 +12,7 @@ const createBlog = catchAsync(async (req, res) => {
 })
 
 const getAllBlogs = catchAsync(async (req, res) => {
+    console.log('test', req.user)
     const result = await blogServices.getAllBlogsFromDB()
     res.status(201).json({
         success: true,

@@ -3,6 +3,7 @@ import cors from 'cors'
 import { userRoutes } from "./app/modules/user/user.routes";
 import { blogRoutes } from "./app/modules/blog/blog.routes";
 import { authRoutes } from "./app/modules/auth/auth.route";
+import globalErrorHandler from "./app/middleware/globalErrorHandler";
 
 const app: Application = express()
 
@@ -18,6 +19,8 @@ export const getAController = (req: Request, res: Response) => {
 }
 
 app.get('/', getAController)
+
+app.use(globalErrorHandler);
 
 
 export default app

@@ -10,6 +10,16 @@ const createUser = catchAsync(async (req, res) => {
         date: result
     })
 })
+
+const blockUser = catchAsync(async (req, res) => {
+    const { userId } = req.params
+    const result = await userServices.blockUser(userId)
+    res.status(200).json({
+        success: true,
+        message: "User blocked successfully",
+    })
+})
 export const userController = {
-    createUser
+    createUser,
+    blockUser
 }
