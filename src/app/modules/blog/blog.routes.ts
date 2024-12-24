@@ -9,6 +9,7 @@ router.post('/', validateToken(USER_ROLE.user), blogcontroller.createBlog)
 router.get('/', blogcontroller.getAllBlogs)
 router.get('/:id', blogcontroller.getASingleBlogs)
 router.patch('/:id', validateToken(USER_ROLE.user), blogcontroller.updateABlog)
-router.delete('/:id', validateToken(USER_ROLE.user, USER_ROLE.admin), blogcontroller.deleteASingleBlog)
+router.delete('/:id', validateToken(USER_ROLE.user), blogcontroller.deleteASingleBlog)
+router.delete('/api/admin/blogs/:id', validateToken(USER_ROLE.admin), blogcontroller.deleteASingleBlog)
 
 export const blogRoutes = router

@@ -1,3 +1,4 @@
+import QueryBuilder from "../../builder/QueryBuilder";
 import { TBlog, TUpdateBlog } from "./blog.interface";
 import { BlogModel } from "./blog.model";
 
@@ -6,9 +7,28 @@ const createBlogIntoDB = async (payload: TBlog) => {
     return result
 }
 
-const getAllBlogsFromDB = async () => {
-    const result = await BlogModel.find().populate('author')
-    return result
+const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
+
+    const BlogSearchableFields = [
+        'email',
+        'id',
+        'contactNo',
+        'emergencyContactNo',
+        'name.firstName',
+        'name.lastName',
+        'name.middleName',
+    ];
+    const blogsQuery = new QueryBuilder(
+        BlogModel.find().populate('academicDepartment'),
+        query,
+    )
+        .search(BlogSearchableFields)
+        .filter()
+        .sort()
+        .paginate()
+
+    const result = await blogsQuery.modelQuery;
+    return result;
 }
 
 const getASingleBlogFromDB = async (id: string) => {

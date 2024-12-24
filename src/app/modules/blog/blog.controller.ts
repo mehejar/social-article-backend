@@ -12,8 +12,8 @@ const createBlog = catchAsync(async (req, res) => {
 })
 
 const getAllBlogs = catchAsync(async (req, res) => {
-    console.log('test', req.user)
-    const result = await blogServices.getAllBlogsFromDB()
+
+    const result = await blogServices.getAllBlogsFromDB(req.query)
     res.status(201).json({
         success: true,
         message: "Blogs fetched successfully",
